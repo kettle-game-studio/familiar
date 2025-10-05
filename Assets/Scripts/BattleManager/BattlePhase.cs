@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BattlePhase : MonoBehaviour
 {
+    public AudioClip soundtrack;
     public bool phaseOver = false;
     protected virtual void Start()
     {

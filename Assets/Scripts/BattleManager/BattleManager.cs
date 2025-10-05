@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
+    public AudioSource soundtrackPlayer;
     List<BattlePhase> phases = new();
     int activePhasesIndex;
 
@@ -32,8 +33,7 @@ public class BattleManager : MonoBehaviour
             activePhasesIndex += 1;
             if (activePhasesIndex >= phases.Count)
                 return;
-            phases[activePhasesIndex].enabled = true;
-            phases[activePhasesIndex].PhaseEnter();
+            ActivatePhase(activePhasesIndex);
         }
     }
 
@@ -42,6 +42,13 @@ public class BattleManager : MonoBehaviour
         activePhasesIndex = index;
         if (activePhasesIndex >= phases.Count)
             return;
+        var soundtrack = phases[activePhasesIndex].soundtrack;
+        Debug.Log(soundtrack.name);
+        if (soundtrack != null)
+        {
+            soundtrackPlayer.clip = soundtrack;
+            soundtrackPlayer.Play();
+        }
         phases[activePhasesIndex].enabled = true;
         phases[activePhasesIndex].PhaseEnter();
     }
