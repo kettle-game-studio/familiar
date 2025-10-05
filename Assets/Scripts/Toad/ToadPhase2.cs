@@ -1,29 +1,23 @@
-using System.Net.Sockets;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 [RequireComponent(typeof(Toad))]
-public class ToadPhase2 : BattlePhase
+public class ToadPhase3 : BattlePhase
 {
-    public float hp = 5;
-    public float waitBeforeFire = 1;
-    public float stunTime = 1;
-
     public float jumpTime = 1;
     public float jumpHigh = 1;
+    public float fallTime = 1;
     public AnimationCurve jumpCurve;
+    public AnimationCurve fallCurve;
+    public int flyCount = 10;
+    public GameObject flyPrefab;
 
-    public float fireTime = 1;
-    public float fireDistance = 1;
-    public AnimationCurve fireCurve;
-
-    enum State { Wait, Jump, Fire, Stun };
+    enum State { Jump, Fall, Wait };
     Toad toad;
     State state;
     float stateTimer;
-    float tongueRollTimer;
-    Vector2 jumpStart;
-    Vector2 jumpEnd;
+    List<Fly> flyContainer = new();
 
     protected override void Start()
     {
@@ -38,90 +32,54 @@ public class ToadPhase2 : BattlePhase
 
         switch (state)
         {
-            case State.Wait: WaitUpdate(); break;
             case State.Jump: JumpUpdate(); break;
-            case State.Fire: FireUpdate(); break;
-            case State.Stun: StunUpdate(); break;
+            case State.Fall: FallUpdate(); break;
+            case State.Wait: WaitUpdate(); break;
         }
-    }
-
-    void WaitUpdate()
-    {
-        if (hp <= 0)
-            phaseOver = true;
-        else if (toad.distanceTrigger.isTriggered())
-            Jump();
-        else if (stateTimer > waitBeforeFire)
-            SetState(State.Fire);
     }
 
     void JumpUpdate()
     {
         if (stateTimer > jumpTime)
         {
+            for (int i = 0; i < flyCount; ++i)
+            {
+                GameObject flyObject = Instantiate(flyPrefab);
+                Fly fly = flyObject.GetComponent<Fly>();
+                if (fly != null)
+                {
+                    fly.player = toad.player;
+                    flyContainer.Add(fly);
+                }
+            }
             SetState(State.Wait);
             return;
         }
-        float progress = stateTimer / jumpTime;
-        float curveValue = jumpCurve.Evaluate(progress);
+        float curveValue = jumpCurve.Evaluate(stateTimer / jumpTime);
         toad.position.y = jumpHigh * curveValue;
-        toad.position.x = Mathf.Lerp(jumpStart.x, jumpEnd.x, progress);
+        toad.shadowTransparency = curveValue;
+    }
+
+    void FallUpdate()
+    {
+        if (stateTimer > fallTime)
+        {
+            phaseOver = true;
+            return;
+        }
+        float curveValue = 1 - fallCurve.Evaluate(stateTimer / fallTime);
+        toad.position.y = jumpHigh * curveValue;
         toad.shadowTransparency = curveValue;
         toad.scaleDirection = Mathf.Sign(toad.position.x - toad.player.transform.position.x);
     }
 
-    void FireUpdate()
+    void WaitUpdate()
     {
-        if (stateTimer > fireTime)
-        {
-            SetState(State.Wait);
-            return;
-        }
-        float value = fireCurve.Evaluate(stateTimer / fireTime);
-        toad.tongue.transform.localScale = new Vector3(value * fireDistance, 1, 1);
-    }
-
-    void StunUpdate()
-    {
-        if (stateTimer > stunTime)
-            SetState(State.Wait);
-        if (tongueRollTimer <= fireTime)
-        {
-            tongueRollTimer += Time.deltaTime * 10;
-            float value = fireCurve.Evaluate(tongueRollTimer / fireTime);
-            toad.tongue.transform.localScale = new Vector3(value * fireDistance, 1, 1);
-        }
-    }
-
-    void Hit(Transform from)
-    {
-        if (state != State.Stun) return;
-        hp -= 1;
-        Debug.Log($"Hit (phase 2)! phase hp: {hp}");
-    }
-
-    void ParryCallback(Transform from)
-    {
-        tongueRollTimer = stateTimer;
-        SetState(State.Stun);
-    }
-
-    void TongueTrigger(Collider2D target)
-    {
-        Player player = target.GetComponent<Player>();
-        if (player != null)
-            player.Parry(toad.toadBody, ParryCallback);
-    }
-
-    void Jump()
-    {
-        float leftDistance = Mathf.Abs(toad.player.transform.position.x - toad.leftSide.position.x);
-        float rightDistance = Mathf.Abs(toad.player.transform.position.x - toad.rightSide.position.x);
-        float targetX = leftDistance > rightDistance ? toad.leftSide.position.x : toad.rightSide.position.x;
-
-        jumpStart = toad.position;
-        jumpEnd = new Vector2(targetX, 0);
-        SetState(State.Jump);
+        foreach (Fly fly in flyContainer)
+            if (fly != null)
+                return;
+        toad.position.x = (toad.leftSide.position.x + toad.rightSide.position.x) / 2;
+        SetState(State.Fall);
     }
 
     void SetState(State newState)
@@ -129,18 +87,5 @@ public class ToadPhase2 : BattlePhase
         Debug.Log($"Toad (phase 2) state: {newState}");
         state = newState;
         stateTimer = 0;
-    }
-
-    public override void PhaseEnter()
-    {
-        Jump();
-        toad.hittable.callback += Hit;
-        toad.tongue.triggerEnter += TongueTrigger;
-    }
-
-    public override void PhaseExit()
-    {
-        toad.hittable.callback -= Hit;
-        toad.tongue.triggerEnter -= TongueTrigger;
     }
 }

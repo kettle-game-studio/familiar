@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3417898927375094431}
   - component: {fileID: 5170281576281944434}
   - component: {fileID: 9141532849917903246}
+  - component: {fileID: 8504987716396197467}
   - component: {fileID: 3553246147070230424}
   - component: {fileID: 3250325233645203558}
   m_Layer: 0
@@ -156,6 +157,72 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8504987716396197467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423058895240971370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef0e5fc951026d449bcbc0ea77e994b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phaseOver: 0
+  jumpTime: 0.5
+  jumpHigh: 30
+  fallTime: 0.5
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  fallCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  flyCount: 10
+  flyPrefab: {fileID: 2254807144463637842, guid: 281010c2532bafe40b2514ce0a32d3f5, type: 3}
 --- !u!114 &3553246147070230424
 MonoBehaviour:
   m_ObjectHideFlags: 0
