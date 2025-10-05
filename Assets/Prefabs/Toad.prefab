@@ -237,7 +237,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  flyCount: 10
+  flyCount: 5
   flyPrefab: {fileID: 2254807144463637842, guid: 281010c2532bafe40b2514ce0a32d3f5, type: 3}
 --- !u!114 &3553246147070230424
 MonoBehaviour:
