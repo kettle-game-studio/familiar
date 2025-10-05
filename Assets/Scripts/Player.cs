@@ -1,11 +1,18 @@
+using System;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    public float hp = 3;
     public float speed = 1;
+    public float parryTimeWindow = 0.5f;
 
+    public float damageDropDistance = 1;
+    public float damagePeriod = 1;
     public float jumpTime = 1;
     public float jumpHigh = 1;
     public AnimationCurve jumpCurve;
@@ -17,10 +24,14 @@ public class Player : MonoBehaviour
     public float dashTime = 1;
     public float dashDistance = 1;
     public AnimationCurve dashCurve;
+    public float attackTime = 1;
+    public float attackDistance = 1;
+    public AnimationCurve attackCurve;
 
     public TriggerChecker jumpTrigger;
+    public TriggerChecker attackTrigger;
 
-    enum State { Jump, Fall, Walk, Dash }
+    enum State { Jump, Fall, Walk, Dash, Attack }
 
     InputAction moveAction;
     InputAction jumpAction;
@@ -31,8 +42,13 @@ public class Player : MonoBehaviour
 
     State state = State.Fall;
     float stateTimer = 0;
+    float takeDamageTimer = 0;
+    float parryTimer = 0;
+    Action<Transform> parryCallback = v => { };
+    Transform parryTarget = null;
     bool canDash = true;
     float direction = 1;
+    Vector2 velocity = Vector2.zero;
 
     void Start()
     {
@@ -46,65 +62,115 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         stateTimer += Time.deltaTime;
+        takeDamageTimer += Time.deltaTime;
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
-        Vector2 velocity = new Vector2(speed * moveValue.x, 0);
-
-        if (state != State.Dash) {
-            direction =
-                moveValue.x > 0.5 ? 1 :
-                moveValue.x < -0.5 ? -1 :
-                direction;
-            if (direction < 0) transform.localScale = new Vector3(-1, 1, 1);
-            else transform.localScale = new Vector3(1, 1, 1);
-        }
+        velocity = new Vector2(speed * moveValue.x, 0);
 
         switch (state)
         {
-            case State.Walk: {
-                if (!jumpTrigger.isTriggered()) {
-                    SetState(State.Fall);
-                    break;
-                }
-                if (jumpAction.IsPressed()) {
-                    SetState(State.Jump);
-                    break;
-                }
-                canDash = true;
-                break;
-            }
-            case State.Fall: {
-                if (jumpTrigger.isTriggered()) {
-                    SetState(State.Walk);
-                    break;
-                }
-                float speedK = fallTime <= 0 ? -CurveTimeDerivative(fallCurve, fallTime) : 1;
-                velocity.y = -speedK * fallSpeed;
-                break;
-            }
-            case State.Jump: {
-                if (stateTimer > jumpTime) {
-                    SetState(State.Fall);
-                    break;
-                }
-                velocity.y = CurveTimeDerivative(jumpCurve, jumpTime) * jumpHigh;
-                break;
-            }
-            case State.Dash: {
-                if (stateTimer > dashTime) {
-                    SetState(State.Fall);
-                    break;
-                }
-                velocity.x = direction * CurveTimeDerivative(dashCurve, dashTime) * dashDistance;
-                break;
-            }
+            case State.Walk: WalkUpdate(); break;
+            case State.Fall: FallUpdate(); break;
+            case State.Jump: JumpUpdate(); break;
+            case State.Dash: DashUpdate(); break;
+            case State.Attack: AttackUpdate(); break;
         }
 
-        if (canDash && dashAction.IsPressed()) {
+        direction =
+            velocity.x > 0 ? 1 :
+            velocity.x < 0 ? -1 :
+            direction;
+
+        transform.localScale = new Vector3(direction < 0 ? -1 : 1, 1, 1);
+
+        if (canDash && dashAction.IsPressed())
+        {
             SetState(State.Dash);
             canDash = false;
         }
 
+        if (state != State.Dash && state != State.Attack && attackAction.IsPressed())
+            Attack();
+
+        if (parryTimer > 0)
+        {
+            parryTimer -= Time.deltaTime;
+            if (state == State.Attack && (direction > 0 == parryTarget.position.x - transform.position.x > 0))
+            {
+                parryCallback(transform);
+                parryTimer = 0;
+            }
+            else if (parryTimer <= 0)
+                TakeDamage(parryTarget);
+        }
+
         body.linearVelocity = velocity;
+    }
+
+    void WalkUpdate()
+    {
+        if (!jumpTrigger.isTriggered())
+        {
+            SetState(State.Fall);
+            return;
+        }
+        if (jumpAction.IsPressed())
+        {
+            SetState(State.Jump);
+            return;
+        }
+        canDash = true;
+    }
+
+    void FallUpdate()
+    {
+        if (jumpTrigger.isTriggered())
+        {
+            SetState(State.Walk);
+            return;
+        }
+        float speedK = fallTime <= 0 ? -CurveTimeDerivative(fallCurve, fallTime) : 1;
+        velocity.y = -speedK * fallSpeed;
+    }
+
+    void JumpUpdate()
+    {
+        if (stateTimer > jumpTime)
+        {
+            SetState(State.Fall);
+            return;
+        }
+        velocity.y = CurveTimeDerivative(jumpCurve, jumpTime) * jumpHigh;
+    }
+
+    void DashUpdate()
+    {
+        if (stateTimer > dashTime)
+        {
+            SetState(State.Fall);
+            return;
+        }
+        velocity.x = direction * CurveTimeDerivative(dashCurve, dashTime) * dashDistance;
+    }
+
+    void AttackUpdate()
+    {
+        if (stateTimer > attackTime)
+        {
+            SetState(State.Fall);
+            return;
+        }
+        velocity.x = direction * CurveTimeDerivative(attackCurve, attackTime) * attackDistance;
+    }
+
+    void Attack()
+    {
+        SetState(State.Attack);
+        foreach (Collider2D collider in attackTrigger.triggered)
+        {
+            Hittable hittable = collider.GetComponent<Hittable>();
+            if (hittable != null)
+                hittable.Hit(transform);
+        }
     }
 
     void SetState(State newState)
@@ -112,6 +178,24 @@ public class Player : MonoBehaviour
         // Debug.Log($"State: {newState}");
         state = newState;
         stateTimer = 0;
+    }
+
+    public void Parry(Transform from, Action<Transform> parryCallback)
+    {
+        parryTimer = parryTimeWindow;
+        parryTarget = from;
+        this.parryCallback = parryCallback;
+    }
+
+    public void TakeDamage(Transform from)
+    {
+        if (takeDamageTimer < damagePeriod)
+            return;
+        hp -= 1;
+        transform.position += Vector3.right * Mathf.Sign(transform.position.x - from.position.x) * damageDropDistance;
+        Debug.Log($"Player damage ({hp} hp)");
+        if (hp == 0)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     float CurveTimeDerivative(AnimationCurve curve, float resolution)
