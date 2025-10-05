@@ -46,9 +46,13 @@ public class ToadPhase3 : BattlePhase
             {
                 GameObject flyObject = Instantiate(flyPrefab);
                 Fly fly = flyObject.GetComponent<Fly>();
+                fly.transform.position = new Vector3(
+                    Random.Range(toad.leftSide.position.x, toad.rightSide.position.x),
+                    15, fly.transform.position.z
+                );
                 if (fly != null)
                 {
-                    fly.player = toad.player;
+                    // fly.player = toad.player;
                     flyContainer.Add(fly);
                 }
             }
