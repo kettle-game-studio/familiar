@@ -1477,7 +1477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundtrack: {fileID: 0}
   phaseOver: 0
-  cameraController: {fileID: 0}
+  cameraController: {fileID: 16280233}
   waitTime: 1
 --- !u!114 &1879940748
 MonoBehaviour:
