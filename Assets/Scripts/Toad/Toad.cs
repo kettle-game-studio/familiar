@@ -59,11 +59,17 @@ public class Toad : MonoBehaviour
             audioSource.clip = firstScream;
             audioSource.Play();
         }
-        else if (! (audioSource.isPlaying && audioSource.time < 0.5))
+        else if (!(audioSource.isPlaying && audioSource.time < 0.5))
         {
             audioSource.clip = screams[Random.Range(0, screams.Length - 1)];
             audioSource.Play();
         }
         takenDamage++;
+    }
+
+    public void playRandom(AudioClip[] clips)
+    {
+        audioSource.clip = clips[Random.Range(0, clips.Length - 1)];
+        audioSource.Play();
     }
 }

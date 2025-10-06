@@ -1,3 +1,4 @@
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,21 +33,24 @@ public class BattleManager : MonoBehaviour
         }
 
         if (phases[activePhasesIndex].phaseOver)
-            {
-                phases[activePhasesIndex].PhaseExit();
-                phases[activePhasesIndex].enabled = false;
-                activePhasesIndex += 1;
-                if (activePhasesIndex >= phases.Count)
-                    return;
-                ActivatePhase(activePhasesIndex);
-            }
+        {
+            phases[activePhasesIndex].PhaseExit();
+            phases[activePhasesIndex].enabled = false;
+            activePhasesIndex += 1;
+            if (activePhasesIndex >= phases.Count)
+                return;
+            ActivatePhase(activePhasesIndex);
+        }
     }
 
     public void ActivatePhase(int index)
     {
-        activePhasesIndex = index;
         if (activePhasesIndex >= phases.Count)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             return;
+        }
+        activePhasesIndex = index;
         var soundtrack = phases[activePhasesIndex].soundtrack;
         // Debug.Log(soundtrack.name);
         if (soundtrack != null)
