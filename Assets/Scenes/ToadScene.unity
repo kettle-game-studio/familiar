@@ -1694,14 +1694,6 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8504987716396197467, guid: a1391a0bc87262741bc0157602e7d590, type: 3}
-      propertyPath: phaseOver
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9141532849917903246, guid: a1391a0bc87262741bc0157602e7d590, type: 3}
-      propertyPath: phaseOver
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
