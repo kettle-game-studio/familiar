@@ -245,13 +245,13 @@ MonoBehaviour:
   attackTrigger: {fileID: 8640527967156792145}
   damageAudio: {fileID: 3955206143000121059}
   damageClips:
-  - {fileID: 8300000, guid: 58f0f6b68192ae74a81f18684e133a54, type: 3}
-  - {fileID: 8300000, guid: 49b7b80f336e22d42ac821edf2a6b343, type: 3}
-  - {fileID: 8300000, guid: 499616e4a3f9f0543bba2d5b0daa5d56, type: 3}
-  - {fileID: 8300000, guid: 0b87dbf6316e7044abedc9364eaaa941, type: 3}
-  - {fileID: 8300000, guid: 40b38f7a150d43b4a939f94e45c5a8ca, type: 3}
-  - {fileID: 8300000, guid: 01f9c359befb2674fb75a42455769cc4, type: 3}
-  - {fileID: 8300000, guid: fad3044081df0f547a0a2cdefa52125e, type: 3}
+  - {fileID: 8300000, guid: 177e22deebdf7634a9a40a80eeb4dbae, type: 3}
+  - {fileID: 8300000, guid: faa8f982a7de00f4d95abbfc0cd19086, type: 3}
+  - {fileID: 8300000, guid: 95f3c6a823e3c7148add12000bb01385, type: 3}
+  - {fileID: 8300000, guid: be81b072c790845408cd34abad668c1a, type: 3}
+  - {fileID: 8300000, guid: 062ad94aa93684d4b8f76432a9838a2d, type: 3}
+  - {fileID: 8300000, guid: 72e59d21ce2d41243927da041843bc6f, type: 3}
+  - {fileID: 8300000, guid: bb14e21ff3c0895408259bc16e7565a8, type: 3}
 --- !u!50 &-1252231643034312867
 Rigidbody2D:
   serializedVersion: 5

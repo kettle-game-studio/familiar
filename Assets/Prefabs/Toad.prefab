@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a45fd65d3e798f640a3ffa8a26c02363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundtrack: {fileID: 8300000, guid: 9355ce030ac00ef438899eedfb940b1b, type: 3}
+  soundtrack: {fileID: 8300000, guid: 47d517ea6ff9e5545a2dc2daec1e8850, type: 3}
   phaseOver: 0
   waitTime: 1
   hp: 5
