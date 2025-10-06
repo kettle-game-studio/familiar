@@ -6,6 +6,7 @@ public class BattleManager : MonoBehaviour
     public AudioSource soundtrackPlayer;
     List<BattlePhase> phases = new();
     int activePhasesIndex;
+    bool initialized = false;
 
     void Start()
     {
@@ -16,8 +17,6 @@ public class BattleManager : MonoBehaviour
         }
 
         Debug.Log($"Phase count: {phases.Count}");
-
-        ActivatePhase(0);
     }
 
     void Update() { UpdatePhase(); }
@@ -26,15 +25,21 @@ public class BattleManager : MonoBehaviour
 
     void UpdatePhase()
     {
-        if (phases[activePhasesIndex].phaseOver)
+        if (!initialized)
         {
-            phases[activePhasesIndex].PhaseExit();
-            phases[activePhasesIndex].enabled = false;
-            activePhasesIndex += 1;
-            if (activePhasesIndex >= phases.Count)
-                return;
-            ActivatePhase(activePhasesIndex);
+            ActivatePhase(0);
+            initialized = true;
         }
+
+        if (phases[activePhasesIndex].phaseOver)
+            {
+                phases[activePhasesIndex].PhaseExit();
+                phases[activePhasesIndex].enabled = false;
+                activePhasesIndex += 1;
+                if (activePhasesIndex >= phases.Count)
+                    return;
+                ActivatePhase(activePhasesIndex);
+            }
     }
 
     public void ActivatePhase(int index)

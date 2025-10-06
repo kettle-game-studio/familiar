@@ -79,7 +79,7 @@ MonoBehaviour:
   distanceTrigger: {fileID: 2887808000989195783}
   shadow: {fileID: 6219395369963417204}
   tongue: {fileID: 8419792471150915578}
-  audio: {fileID: 5467349855922782830}
+  audioSource: {fileID: 5467349855922782830}
   firstScream: {fileID: 8300000, guid: 9db31f57d4a798f439334468b054202c, type: 3}
   screams:
   - {fileID: 8300000, guid: 1694d52c5477aa944b042ec5f36975d1, type: 3}

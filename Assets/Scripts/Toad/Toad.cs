@@ -15,7 +15,7 @@ public class Toad : MonoBehaviour
     public SpriteRenderer shadow;
     public TriggerChecker tongue;
 
-    public AudioSource audio;
+    public AudioSource audioSource;
     public AudioClip firstScream;
     public AudioClip[] screams;
     public float takeDamageTime = 0.1f;
@@ -59,13 +59,13 @@ public class Toad : MonoBehaviour
     {
         if (takenDamage == 0)
         {
-            audio.clip = firstScream;
-            audio.Play();
+            audioSource.clip = firstScream;
+            audioSource.Play();
         }
-        else if (! (audio.isPlaying && audio.time < 0.5))
+        else if (! (audioSource.isPlaying && audioSource.time < 0.5))
         {
-            audio.clip = screams[Random.Range(0, screams.Length - 1)];
-            audio.Play();
+            audioSource.clip = screams[Random.Range(0, screams.Length - 1)];
+            audioSource.Play();
         }
         takenDamage++;
     }
