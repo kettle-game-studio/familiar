@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a80a0a72e88d1a5419b428dce1c5e640
+guid: 733a847dff01068439d49a77f95d4001
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 641056363304348820
-    second: biba_dash_1_0
+      213: 808479384630975062
+    second: Toad_Attack3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,27 +96,40 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: biba_dash_1_0
+      name: Toad_Attack3_0
       rect:
         serializedVersion: 2
-        x: 192
-        y: 43
-        width: 390
-        height: 415
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 1150
+        height: 1657
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 49c62cfad5d75e800800000000000000
-      internalID: 641056363304348820
+      spriteID: 65ad72187bb483b00800000000000000
+      internalID: 808479384630975062
       vertices: []
       indices: 
       edges: []
@@ -125,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6bc0b479039b3e74bb207173923dfea5
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      biba_dash_1_0: 641056363304348820
+      Toad_Attack3_0: 808479384630975062
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

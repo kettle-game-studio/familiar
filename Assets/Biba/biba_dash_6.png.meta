@@ -103,12 +103,12 @@ TextureImporter:
       name: biba_dash_6_0
       rect:
         serializedVersion: 2
-        x: 189
-        y: 5
-        width: 395
-        height: 382
+        x: 0
+        y: 0
+        width: 773
+        height: 458
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3abd17a5fe0626b42a0d9b52e3553dfc
     internalID: 0
     vertices: []
     indices: 

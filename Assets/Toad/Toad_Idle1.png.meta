@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2b4f1555fd6a88f4abcda45a706fcbc3
+guid: ffcb68378f9f4864da3b1133392da5f5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 143551415145187111
-    second: biba_dash_5_0
+      213: 729067888787579506
+    second: Toad_Idle1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,27 +96,40 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: biba_dash_5_0
+      name: Toad_Idle1_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 4
         y: 0
-        width: 773
-        height: 458
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 1146
+        height: 1657
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 727cbb2604ffdf100800000000000000
-      internalID: 143551415145187111
+      spriteID: 272e350d16b2e1a00800000000000000
+      internalID: 729067888787579506
       vertices: []
       indices: 
       edges: []
@@ -125,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9161cefe2f0481b47b8224d71b8aac1b
+    spriteID: 167185344718fcd4c962111d29083a55
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      biba_dash_5_0: 143551415145187111
+      Toad_Idle1_0: 729067888787579506
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

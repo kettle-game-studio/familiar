@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  cameraController: {fileID: 0}
   leftSide: {fileID: 0}
   rightSide: {fileID: 0}
   toadBody: {fileID: 1444883169293697831}
@@ -652,7 +653,7 @@ Transform:
   m_GameObject: {fileID: 3873399966072656267}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.05, z: 0}
+  m_LocalPosition: {x: 0, y: 0.76, z: 0}
   m_LocalScale: {x: 0.1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -793,12 +794,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 6938621430517529575, guid: ad4f998295c629144a217d5748deae40, type: 3}
+  m_Sprite: {fileID: 1248160815382380587, guid: 672ff52b7bb4be240b5326bc77c3fb6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 7.71, y: 1.96}
+  m_Size: {x: 9.2, y: 0.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -972,12 +973,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -4298973808509051120, guid: eadde9b4009163146b3f8a187113de04, type: 3}
+  m_Sprite: {fileID: -704747074769360466, guid: 31fced756572692449724f7045a9b308, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 11.49, y: 16.57}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
