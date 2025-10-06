@@ -921,8 +921,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundtrack: {fileID: 8300000, guid: 77975fee761513c46be274f9b9cac85c, type: 3}
   phaseOver: 0
-  speed: 5
-  time: 4
+  speed: 7
+  time: 6
   witch: {fileID: 582383186}
 --- !u!1001 &705200409
 PrefabInstance:
@@ -1223,7 +1223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6850517303266170609, guid: 22d7947103e4bc24e93a5177229b3892, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.24226
+      value: -45.7
       objectReference: {fileID: 0}
     - target: {fileID: 6850517303266170609, guid: 22d7947103e4bc24e93a5177229b3892, type: 3}
       propertyPath: m_LocalPosition.y
