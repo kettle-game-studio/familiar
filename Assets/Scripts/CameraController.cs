@@ -22,6 +22,8 @@ public class CameraController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (player == null)
+            return;
         float targetShift = (player.transform.position.x - basePosition.x) * playerViewK;
         float currentShift = transform.position.x - basePosition.x;
         float x = Mathf.Lerp(currentShift, targetShift, playerViewSpeed);
