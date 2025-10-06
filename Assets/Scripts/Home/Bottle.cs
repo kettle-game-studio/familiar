@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class Bottle : MonoBehaviour
 {
     public float fallTime = 0.33333f;
-    GameObject particles;
+    public GameObject particles;
 
     Animator animator;
     Hittable hittable;
