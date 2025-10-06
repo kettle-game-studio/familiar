@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
 
     public AudioSource damageAudio;
     public AudioClip[] damageClips;
+    public AudioClip[] attackClips;
 
     enum State { Jump, Fall, Walk, Dash, Attack, Stun, Dead }
 
@@ -215,6 +216,8 @@ public class Player : MonoBehaviour
         attackTimer = 0;
         animator.SetTrigger("Attack");
         SetState(State.Attack);
+        damageAudio.clip = attackClips[UnityEngine.Random.Range(0, attackClips.Length - 1)];
+        damageAudio.Play();
         foreach (Collider2D collider in attackTrigger.triggered)
         {
             Hittable hittable = collider.GetComponent<Hittable>();
