@@ -1491,7 +1491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a290aeabddd5e4fbec2d9a4c86e161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundtrack: {fileID: 0}
+  soundtrack: {fileID: 8300000, guid: b0951456490444c4ba390c8f68fdb3f0, type: 3}
   phaseOver: 0
   bottles:
   - {fileID: 1425283712}
