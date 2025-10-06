@@ -43,7 +43,7 @@ public class BattleManager : MonoBehaviour
         if (activePhasesIndex >= phases.Count)
             return;
         var soundtrack = phases[activePhasesIndex].soundtrack;
-        Debug.Log(soundtrack.name);
+        // Debug.Log(soundtrack.name);
         if (soundtrack != null)
         {
             soundtrackPlayer.clip = soundtrack;

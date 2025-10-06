@@ -5,10 +5,12 @@ public class Fly : MonoBehaviour
 {
     // public Player player;
     public float deadTime = 1;
+    public Animator animator;
 
     public float walkTime = 1;
     public float walkDistance = 1;
     public AnimationCurve walkCurve;
+    public float readyTime = 1;
     public float dashTime = 1;
     public float dashDistance = 1;
     public AnimationCurve dashCurve;
@@ -19,7 +21,7 @@ public class Fly : MonoBehaviour
     public TriggerChecker viewTrigger;
     public TriggerChecker hitCollider;
 
-    enum State { Walk, Wait, Dash, Dead };
+    enum State { Walk, Wait, Ready, Dash, Dead };
     State state;
     float stateTimer = 0;
     Vector3 startPoint;
@@ -41,6 +43,7 @@ public class Fly : MonoBehaviour
         {
             case State.Wait: WaitUpdate(); break;
             case State.Walk: WalkUpdate(); break;
+            case State.Ready: ReadyUpdate(); break;
             case State.Dash: DashUpdate(); break;
             case State.Dead: DeadUpdate(); break;
         }
@@ -66,8 +69,18 @@ public class Fly : MonoBehaviour
         transform.position = Vector3.Lerp(startPoint, endPoint, value);
     }
 
+    void ReadyUpdate()
+    {
+        if (stateTimer > readyTime)
+        {
+            SetState(State.Dash);
+            animator.SetBool("Ready", false);
+        }
+    }
+
     void DashUpdate()
     {
+        Debug.DrawLine(startPoint, endPoint);
         if (stateTimer > dashTime)
         {
             Wait();
@@ -105,14 +118,16 @@ public class Fly : MonoBehaviour
 
     void Hit(Transform from)
     {
+        animator.SetTrigger("Pop");
         SetState(State.Dead);
     }
 
     void Dash(Vector3 target)
     {
         startPoint = transform.position;
-        endPoint = (target - transform.position).normalized * dashDistance;
-        SetState(State.Dash);
+        endPoint = transform.position + (target - transform.position).normalized * dashDistance;
+        animator.SetBool("Ready", true);
+        SetState(State.Ready);
     }
 
     void ParryCallback(Transform from)
@@ -140,7 +155,7 @@ public class Fly : MonoBehaviour
 
     void SetState(State newState)
     {
-        Debug.Log($"Fly state: {newState}");
+        // Debug.Log($"Fly state: {newState}");
         state = newState;
         stateTimer = 0;
     }

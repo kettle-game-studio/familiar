@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e274a31237ff6eb49b4ff4412770cd7c
+guid: 4535825273afafb4fad4378c8e8e7e40
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6658670927973994472
-    second: toad_0
+      213: 6733443423860588390
+    second: biba_walk_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: toad_0
+      name: biba_walk_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1045
-        height: 835
+        width: 370
+        height: 414
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8ef4c1a0ee9586c50800000000000000
-      internalID: 6658670927973994472
+      spriteID: 66f76626e1ff17d50800000000000000
+      internalID: 6733443423860588390
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      toad_0: 6658670927973994472
+      biba_walk_0: 6733443423860588390
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

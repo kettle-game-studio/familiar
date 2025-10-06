@@ -162,13 +162,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -4913982344839117222, guid: 241f06d787dc2ca40b95b73cfba3b429, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 241f06d787dc2ca40b95b73cfba3b429, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.96, y: 0.88}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -208,7 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf03b8d81aa5b44a90b944c063c1bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadTime: 0
+  deadTime: 0.1
+  animator: {fileID: 5594284589403130380}
   walkTime: 0.5
   walkDistance: 5
   walkCurve:
@@ -217,21 +218,12 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: -2.1252902
-      outSlope: -2.1252902
+      inSlope: -0.09287762
+      outSlope: -0.09287762
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 1
-    - serializedVersion: 3
-      time: 0.08085946
-      value: -0.15169428
-      inSlope: 0.38679847
-      outSlope: 0.38679847
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.16100058
+      outWeight: 0.10469798
     - serializedVersion: 3
       time: 1
       value: 1
@@ -244,7 +236,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 1
+  readyTime: 0.5
+  dashTime: 0.2
   dashDistance: 5
   dashCurve:
     serializedVersion: 2
@@ -252,21 +245,12 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: -4.9849205
-      outSlope: -4.9849205
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.58916646
-    - serializedVersion: 3
-      time: 0.047408275
-      value: -0.5035673
-      inSlope: -0.40218398
-      outSlope: -0.40218398
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.10424153
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1

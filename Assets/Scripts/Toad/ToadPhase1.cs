@@ -22,7 +22,6 @@ public class ToadPhase1 : BattlePhase
     {
         base.Start();
         toad = GetComponent<Toad>();
-        SetState(State.Jump);
     }
 
     protected void Update()
@@ -42,7 +41,7 @@ public class ToadPhase1 : BattlePhase
         if (hp <= 0)
             phaseOver = true;
         else if (stateTimer > waitTime && toad.distanceTrigger.isTriggered())
-            SetState(State.Jump);
+            Jump();
     }
 
     void JumpUpdate()
@@ -62,6 +61,7 @@ public class ToadPhase1 : BattlePhase
     {
         if (stateTimer > fallTime)
         {
+            toad.cameraController.ShakeDown();
             SetState(State.Wait);
             return;
         }
@@ -69,6 +69,12 @@ public class ToadPhase1 : BattlePhase
         toad.position.y = jumpHigh * curveValue;
         toad.shadowTransparency = curveValue;
         toad.scaleDirection = Mathf.Sign(toad.position.x - toad.player.transform.position.x);
+    }
+
+    void Jump()
+    {
+        toad.cameraController.ShakeUp();
+        SetState(State.Jump);
     }
 
     void Hit(Transform from)
@@ -96,6 +102,7 @@ public class ToadPhase1 : BattlePhase
 
     public override void PhaseEnter()
     {
+        Jump();
         toad.hittable.callback += Hit;
         toad.collisionChecker.collisionEnter += TouchSomething;
     }

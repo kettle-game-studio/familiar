@@ -292,7 +292,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   fireTime: 1
-  fireDistance: 10
+  fireDistance: 5
   fireCurve:
     serializedVersion: 2
     m_Curve:
@@ -652,7 +652,7 @@ Transform:
   m_GameObject: {fileID: 3873399966072656267}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.08, z: 0}
+  m_LocalPosition: {x: 0, y: -0.05, z: 0}
   m_LocalScale: {x: 0.1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -793,9 +793,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: -3504782004060401532, guid: 938dbbdacf300e9479c3d4b033cad549, type: 3}
+  m_Sprite: {fileID: 6938621430517529575, guid: ad4f998295c629144a217d5748deae40, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 7.71, y: 1.96}

@@ -3,6 +3,7 @@ using UnityEngine;
 public class Toad : MonoBehaviour
 {
     public Player player;
+    public CameraController cameraController;
     public Transform leftSide;
     public Transform rightSide;
 

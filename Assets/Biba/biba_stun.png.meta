@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: e274a31237ff6eb49b4ff4412770cd7c
+guid: b7e8881a0a0cf4942b01690ebd9b0f32
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6658670927973994472
-    second: toad_0
+      213: -4214371976797015993
+    second: biba_stun_0
+  - first:
+      213: -4867092366864994975
+    second: biba_stun_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: toad_0
+      name: biba_stun_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 1045
-        height: 835
+        y: 71
+        width: 39
+        height: 166
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8ef4c1a0ee9586c50800000000000000
-      internalID: 6658670927973994472
+      spriteID: 74037ab040b8385c0800000000000000
+      internalID: -4214371976797015993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: biba_stun_1
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 2
+        width: 358
+        height: 412
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16d2fff774d947cb0800000000000000
+      internalID: -4867092366864994975
       vertices: []
       indices: 
       edges: []
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      toad_0: 6658670927973994472
+      biba_stun_0: -4214371976797015993
+      biba_stun_1: -4867092366864994975
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

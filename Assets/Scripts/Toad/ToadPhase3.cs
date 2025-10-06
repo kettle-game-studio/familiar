@@ -59,6 +59,7 @@ public class ToadPhase2 : BattlePhase
     {
         if (stateTimer > jumpTime)
         {
+            toad.cameraController.ShakeDown();
             SetState(State.Wait);
             return;
         }
@@ -122,6 +123,7 @@ public class ToadPhase2 : BattlePhase
         jumpStart = toad.position;
         jumpEnd = new Vector2(targetX, 0);
         SetState(State.Jump);
+        toad.cameraController.ShakeUp();
     }
 
     void SetState(State newState)

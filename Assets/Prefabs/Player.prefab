@@ -98,6 +98,7 @@ MonoBehaviour:
   hp: 3
   speed: 20
   parryTimeWindow: 0.15
+  animator: {fileID: 6028489478651587566}
   damageDropDistance: 2
   damagePeriod: 1
   jumpTime: 0.3

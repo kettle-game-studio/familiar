@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,8 +9,7 @@ public class Player : MonoBehaviour
     public float hp = 3;
     public float speed = 1;
     public float parryTimeWindow = 0.5f;
-
-    public float damageDropDistance = 1;
+    public Animator animator;
     public float damagePeriod = 1;
     public float jumpTime = 1;
     public float jumpHigh = 1;
@@ -24,14 +22,19 @@ public class Player : MonoBehaviour
     public float dashTime = 1;
     public float dashDistance = 1;
     public AnimationCurve dashCurve;
+
     public float attackTime = 1;
     public float attackDistance = 1;
     public AnimationCurve attackCurve;
 
+    public float stunTime = 1;
+    public float stunDistance = 1;
+    public AnimationCurve stunCurve;
+
     public TriggerChecker jumpTrigger;
     public TriggerChecker attackTrigger;
 
-    enum State { Jump, Fall, Walk, Dash, Attack }
+    enum State { Jump, Fall, Walk, Dash, Attack, Stun }
 
     InputAction moveAction;
     InputAction jumpAction;
@@ -72,26 +75,25 @@ public class Player : MonoBehaviour
             case State.Fall: FallUpdate(); break;
             case State.Jump: JumpUpdate(); break;
             case State.Dash: DashUpdate(); break;
+            case State.Stun: StunUpdate(); break;
             case State.Attack: AttackUpdate(); break;
         }
 
-        direction =
-            velocity.x > 0 ? 1 :
-            velocity.x < 0 ? -1 :
-            direction;
+        if (state != State.Stun)
+            direction =
+                velocity.x > 0 ? 1 :
+                velocity.x < 0 ? -1 :
+                direction;
 
         transform.localScale = new Vector3(direction < 0 ? -1 : 1, 1, 1);
 
         if (canDash && dashAction.IsPressed())
-        {
-            SetState(State.Dash);
-            canDash = false;
-        }
+            Dash();
 
         if (state != State.Dash && state != State.Attack && attackAction.IsPressed())
             Attack();
 
-        if (parryTimer > 0)
+        if (parryTimer > 0 && parryTarget != null)
         {
             parryTimer -= Time.deltaTime;
             if (state == State.Attack && (direction > 0 == parryTarget.position.x - transform.position.x > 0))
@@ -104,6 +106,8 @@ public class Player : MonoBehaviour
         }
 
         body.linearVelocity = velocity;
+        animator.SetBool("Move", Mathf.Abs(velocity.x) > 1e-5);
+        animator.SetBool("Fall", state == State.Fall);
     }
 
     void WalkUpdate()
@@ -115,7 +119,7 @@ public class Player : MonoBehaviour
         }
         if (jumpAction.IsPressed())
         {
-            SetState(State.Jump);
+            Jump();
             return;
         }
         canDash = true;
@@ -152,6 +156,16 @@ public class Player : MonoBehaviour
         velocity.x = direction * CurveTimeDerivative(dashCurve, dashTime) * dashDistance;
     }
 
+    void StunUpdate()
+    {
+        if (stateTimer > stunTime)
+        {
+            SetState(State.Fall);
+            return;
+        }
+        velocity.x = -direction * CurveTimeDerivative(stunCurve, stunTime) * stunDistance;
+    }
+
     void AttackUpdate()
     {
         if (stateTimer > attackTime)
@@ -162,8 +176,16 @@ public class Player : MonoBehaviour
         velocity.x = direction * CurveTimeDerivative(attackCurve, attackTime) * attackDistance;
     }
 
+    void Dash()
+    {
+        SetState(State.Dash);
+        animator.SetTrigger("Dash");
+        canDash = false;
+    }
+
     void Attack()
     {
+        animator.SetTrigger("Attack");
         SetState(State.Attack);
         foreach (Collider2D collider in attackTrigger.triggered)
         {
@@ -171,6 +193,19 @@ public class Player : MonoBehaviour
             if (hittable != null)
                 hittable.Hit(transform);
         }
+    }
+
+    void Jump()
+    {
+        SetState(State.Jump);
+        animator.SetTrigger("Jump");
+    }
+
+    void Stun()
+    {
+        SetState(State.Stun);
+        animator.SetTrigger("Stun");
+        canDash = false;
     }
 
     void SetState(State newState)
@@ -192,7 +227,9 @@ public class Player : MonoBehaviour
         if (takeDamageTimer < damagePeriod)
             return;
         hp -= 1;
-        transform.position += Vector3.right * Mathf.Sign(transform.position.x - from.position.x) * damageDropDistance;
+        direction = from.position.x > transform.position.x ? 1 : -1;
+        takeDamageTimer = 0;
+        Stun();
         Debug.Log($"Player damage ({hp} hp)");
         if (hp == 0)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
