@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
     public TriggerChecker jumpTrigger;
     public TriggerChecker attackTrigger;
 
+    public AudioSource damageAudio;
+    public AudioClip[] damageClips;
+
     enum State { Jump, Fall, Walk, Dash, Attack, Stun }
 
     InputAction moveAction;
@@ -237,6 +240,8 @@ public class Player : MonoBehaviour
         hp -= 1;
         direction = from.position.x > transform.position.x ? 1 : -1;
         takeDamageTimer = 0;
+        damageAudio.clip = damageClips[UnityEngine.Random.Range(0, damageClips.Length - 1)];
+        damageAudio.Play();
         Stun();
         Debug.Log($"Player damage ({hp} hp)");
         if (hp == 0)
