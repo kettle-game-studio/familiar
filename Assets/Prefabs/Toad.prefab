@@ -100,7 +100,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423058895240971370}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2dede2da20ffd047ba460b527c76236, type: 3}
   m_Name: 
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423058895240971370}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a45fd65d3e798f640a3ffa8a26c02363, type: 3}
   m_Name: 
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423058895240971370}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef0e5fc951026d449bcbc0ea77e994b6, type: 3}
   m_Name: 
@@ -329,6 +329,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  fireClips:
+  - {fileID: 8300000, guid: 3d0beabeca69a7744ae887967541bfef, type: 3}
+  - {fileID: 8300000, guid: c8a34c4b904ce404bb4ace07f6829fd2, type: 3}
+  stunClips:
+  - {fileID: 8300000, guid: e7a2a62496f183041a051f0da1557efb, type: 3}
+  - {fileID: 8300000, guid: d649901671000a549beaa74d7735217d, type: 3}
+  - {fileID: 8300000, guid: f59bac638b25f284798e8b90841b0e97, type: 3}
+  - {fileID: 8300000, guid: 3173672f61ff23c44a6d2a3a6d290977, type: 3}
 --- !u!114 &3250325233645203558
 MonoBehaviour:
   m_ObjectHideFlags: 0

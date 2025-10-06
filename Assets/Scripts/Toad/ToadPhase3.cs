@@ -17,6 +17,9 @@ public class ToadPhase2 : BattlePhase
     public float fireDistance = 1;
     public AnimationCurve fireCurve;
 
+    public AudioClip[] fireClips;
+    public AudioClip[] stunClips;
+
     enum State { Wait, Jump, Fire, Stun, Damage };
     Toad toad;
     State state;
@@ -168,6 +171,10 @@ public class ToadPhase2 : BattlePhase
         Debug.Log($"Toad (phase 3) state: {newState}");
         state = newState;
         stateTimer = 0;
+        if (newState == State.Fire)
+            toad.playRandom(fireClips);
+        else if (newState == State.Stun)
+            toad.playRandom(stunClips);
     }
 
     public override void PhaseEnter()
