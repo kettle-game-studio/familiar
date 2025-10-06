@@ -36,16 +36,13 @@ public class BattleManager : MonoBehaviour
         {
             phases[activePhasesIndex].PhaseExit();
             phases[activePhasesIndex].enabled = false;
-            activePhasesIndex += 1;
-            if (activePhasesIndex >= phases.Count)
-                return;
-            ActivatePhase(activePhasesIndex);
+            ActivatePhase(activePhasesIndex + 1);
         }
     }
 
     public void ActivatePhase(int index)
     {
-        if (activePhasesIndex >= phases.Count)
+        if (index >= phases.Count)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             return;
