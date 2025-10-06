@@ -191,7 +191,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  attackTime: 0.2
+  attackTime: 0.3
   attackDistance: 1
   attackCurve:
     serializedVersion: 2
