@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ca18f846b9ebf224e894853e02934e0c
+guid: f1b250ae030a4ce48bff6405807d6de5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 377238758455632715
-    second: biba_dash_2_0
+      213: -4480767334272930177
+    second: biba_attack_3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,40 +96,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: biba_dash_2_0
+      name: biba_attack_3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 773
-        height: 458
+        width: 465
+        height: 414
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b43e141f6a83c3500800000000000000
-      internalID: 377238758455632715
+      spriteID: f7eec7f79dd11d1c0800000000000000
+      internalID: -4480767334272930177
       vertices: []
       indices: 
       edges: []
@@ -138,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 036505d66b9315047a60c14351df6fa8
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      biba_dash_2_0: 377238758455632715
+      biba_attack_3_0: -4480767334272930177
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
