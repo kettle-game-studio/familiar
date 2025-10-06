@@ -21,6 +21,9 @@ public class Fly : MonoBehaviour
     public TriggerChecker viewTrigger;
     public TriggerChecker hitCollider;
 
+    public AudioSource audioSource;
+    public AudioClip[] deadClips;
+
     enum State { Walk, Wait, Ready, Dash, Dead };
     State state;
     float stateTimer = 0;
@@ -103,9 +106,9 @@ public class Fly : MonoBehaviour
         Vector3 move = new Vector3(direction.x, direction.y, 0) * walkDistance;
         endPoint = transform.position + move;
         if (endPoint.x < locationFrom.x) move.x = +Mathf.Abs(move.x);
-        if (endPoint.x > locationTo.x)   move.x = -Mathf.Abs(move.x);
+        if (endPoint.x > locationTo.x) move.x = -Mathf.Abs(move.x);
         if (endPoint.y < locationFrom.y) move.y = +Mathf.Abs(move.y);
-        if (endPoint.y > locationTo.y)   move.y = -Mathf.Abs(move.y);
+        if (endPoint.y > locationTo.y) move.y = -Mathf.Abs(move.y);
         endPoint = transform.position + move;
         SetState(State.Walk);
     }
@@ -158,5 +161,12 @@ public class Fly : MonoBehaviour
         // Debug.Log($"Fly state: {newState}");
         state = newState;
         stateTimer = 0;
+        if (newState == State.Dead)
+            playRandom(deadClips);
+    }
+    public void playRandom(AudioClip[] clips)
+    {
+        audioSource.clip = clips[Random.Range(0, clips.Length - 1)];
+        audioSource.Play();
     }
 }
