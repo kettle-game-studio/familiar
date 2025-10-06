@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2b4f1555fd6a88f4abcda45a706fcbc3
+guid: 672ff52b7bb4be240b5326bc77c3fb6b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 143551415145187111
-    second: biba_dash_5_0
+      213: 1248160815382380587
+    second: Toad_Tongue_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: biba_dash_5_0
+      name: Toad_Tongue_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 773
-        height: 458
+        width: 920
+        height: 58
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 727cbb2604ffdf100800000000000000
-      internalID: 143551415145187111
+      spriteID: b20cd6706ab525110800000000000000
+      internalID: 1248160815382380587
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9161cefe2f0481b47b8224d71b8aac1b
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      biba_dash_5_0: 143551415145187111
+      Toad_Tongue_0: 1248160815382380587
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
