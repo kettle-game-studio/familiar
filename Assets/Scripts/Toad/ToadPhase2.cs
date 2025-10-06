@@ -23,7 +23,6 @@ public class ToadPhase3 : BattlePhase
     {
         base.Start();
         toad = GetComponent<Toad>();
-        toad.animator.SetBool("Jump", true);
         SetState(State.Jump);
     }
 
@@ -94,5 +93,11 @@ public class ToadPhase3 : BattlePhase
         Debug.Log($"Toad (phase 2) state: {newState}");
         state = newState;
         stateTimer = 0;
+    }
+
+    public override void PhaseEnter()
+    {
+        toad.animator.SetBool("Jump", true);
+        SetState(State.Jump);
     }
 }
