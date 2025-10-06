@@ -1606,6 +1606,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toad
       objectReference: {fileID: 0}
+    - target: {fileID: 3250325233645203558, guid: a1391a0bc87262741bc0157602e7d590, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 16280233}
     - target: {fileID: 3417898927375094431, guid: a1391a0bc87262741bc0157602e7d590, type: 3}
       propertyPath: player
       value: 
