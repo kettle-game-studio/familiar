@@ -13,7 +13,7 @@ public class ToadPhase1 : BattlePhase
     public AnimationCurve jumpCurve;
     public AnimationCurve fallCurve;
 
-    enum State { Wait, Jump, Fall };
+    enum State { Wait, Jump, Fall, Damage };
     Toad toad;
     State state;
     float stateTimer;
@@ -33,6 +33,7 @@ public class ToadPhase1 : BattlePhase
             case State.Wait: WaitUpdate(); break;
             case State.Jump: JumpUpdate(); break;
             case State.Fall: FallUpdate(); break;
+            case State.Damage: DamageUpdate(); break;
         }
     }
 
@@ -49,6 +50,7 @@ public class ToadPhase1 : BattlePhase
         if (stateTimer > jumpTime)
         {
             toad.position.x = Mathf.Clamp(toad.player.transform.position.x, toad.leftSide.position.x, toad.rightSide.position.x);
+            toad.animator.SetBool("Jump", false);
             SetState(State.Fall);
             return;
         }
@@ -71,9 +73,16 @@ public class ToadPhase1 : BattlePhase
         toad.scaleDirection = Mathf.Sign(toad.position.x - toad.player.transform.position.x);
     }
 
+    void DamageUpdate()
+    {
+        if (stateTimer > toad.takeDamageTime)
+            Jump();
+    }
+
     void Jump()
     {
         toad.cameraController.ShakeUp();
+        toad.animator.SetBool("Jump", true);
         SetState(State.Jump);
     }
 
@@ -81,6 +90,8 @@ public class ToadPhase1 : BattlePhase
     {
         if (state != State.Wait) return;
         hp -= 1;
+        toad.animator.SetTrigger("Damage");
+        SetState(State.Damage);
         Debug.Log($"Hit (phase 1)! phase hp: {hp}");
     }
 

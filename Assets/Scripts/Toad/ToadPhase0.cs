@@ -41,6 +41,7 @@ public class ToadPhase0 : BattlePhase
     {
         if (state != State.Idle) return;
         Debug.Log($"Hit (phase 0)!");
+        toad.animator.SetBool("Sleep", false);
         SetState(State.Wait);
     }
 

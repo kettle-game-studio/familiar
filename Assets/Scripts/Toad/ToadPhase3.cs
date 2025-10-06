@@ -17,7 +17,7 @@ public class ToadPhase2 : BattlePhase
     public float fireDistance = 1;
     public AnimationCurve fireCurve;
 
-    enum State { Wait, Jump, Fire, Stun };
+    enum State { Wait, Jump, Fire, Stun, Damage };
     Toad toad;
     State state;
     float stateTimer;
@@ -42,17 +42,30 @@ public class ToadPhase2 : BattlePhase
             case State.Jump: JumpUpdate(); break;
             case State.Fire: FireUpdate(); break;
             case State.Stun: StunUpdate(); break;
+            case State.Damage: DamageUpdate(); break;
         }
     }
 
     void WaitUpdate()
     {
         if (hp <= 0)
+        {
+            toad.animator.SetBool("Ready", false);
+            toad.animator.SetTrigger("Dead");
+            toad.scaleDirection = 1;
             phaseOver = true;
+        }
         else if (toad.distanceTrigger.isTriggered())
+        {
+            toad.animator.SetBool("Ready", false);
             Jump();
+        }
         else if (stateTimer > waitBeforeFire)
+        {
+            toad.animator.SetBool("Ready", false);
+            toad.animator.SetBool("Attack", true);
             SetState(State.Fire);
+        }
     }
 
     void JumpUpdate()
@@ -60,7 +73,7 @@ public class ToadPhase2 : BattlePhase
         if (stateTimer > jumpTime)
         {
             toad.cameraController.ShakeDown();
-            SetState(State.Wait);
+            Wait();
             return;
         }
         float progress = stateTimer / jumpTime;
@@ -75,7 +88,8 @@ public class ToadPhase2 : BattlePhase
     {
         if (stateTimer > fireTime)
         {
-            SetState(State.Wait);
+            toad.animator.SetBool("Attack", false);
+            Wait();
             return;
         }
         float value = fireCurve.Evaluate(stateTimer / fireTime);
@@ -85,7 +99,10 @@ public class ToadPhase2 : BattlePhase
     void StunUpdate()
     {
         if (stateTimer > stunTime)
-            SetState(State.Wait);
+        {
+            toad.animator.SetBool("Stun", false);
+            Wait();
+        }
         if (tongueRollTimer <= fireTime)
         {
             tongueRollTimer += Time.deltaTime * 10;
@@ -94,16 +111,28 @@ public class ToadPhase2 : BattlePhase
         }
     }
 
+    void DamageUpdate()
+    {
+        if (stateTimer > toad.takeDamageTime)
+        {
+            Wait();
+        }
+    }
+
     void Hit(Transform from)
     {
         if (state != State.Stun) return;
         hp -= 1;
         Debug.Log($"Hit (phase 3)! phase hp: {hp}");
+        toad.animator.SetBool("Stun", false);
+        toad.animator.SetTrigger("Damage");
+        SetState(State.Damage);
     }
 
     void ParryCallback(Transform from)
     {
         tongueRollTimer = stateTimer;
+        toad.animator.SetBool("Stun", true);
         SetState(State.Stun);
     }
 
@@ -112,6 +141,13 @@ public class ToadPhase2 : BattlePhase
         Player player = target.GetComponent<Player>();
         if (player != null)
             player.Parry(toad.toadBody, ParryCallback);
+    }
+
+    void Wait()
+    {
+        toad.animator.SetBool("Attack", false);
+        toad.animator.SetBool("Ready", true);
+        SetState(State.Wait);
     }
 
     void Jump()
@@ -135,6 +171,7 @@ public class ToadPhase2 : BattlePhase
 
     public override void PhaseEnter()
     {
+        toad.animator.SetBool("Jump", false);
         Jump();
         toad.hittable.callback += Hit;
         toad.tongue.triggerEnter += TongueTrigger;

@@ -7,6 +7,7 @@ public class Toad : MonoBehaviour
     public Transform leftSide;
     public Transform rightSide;
 
+    public Animator animator;
     public Transform toadBody;
     public CollisionChecker collisionChecker;
     public Hittable hittable;
@@ -17,6 +18,7 @@ public class Toad : MonoBehaviour
     public AudioSource audio;
     public AudioClip firstScream;
     public AudioClip[] screams;
+    public float takeDamageTime = 0.1f;
 
     [HideInInspector]
     public Vector2 position;

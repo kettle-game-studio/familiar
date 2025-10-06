@@ -72,6 +72,7 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   leftSide: {fileID: 0}
   rightSide: {fileID: 0}
+  animator: {fileID: 2432390664993056591}
   toadBody: {fileID: 1444883169293697831}
   collisionChecker: {fileID: 3237627939581128828}
   hittable: {fileID: 1069132164573188588}
@@ -88,6 +89,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 973e6226c3cac0f4bb570f532fed0e67, type: 3}
   - {fileID: 8300000, guid: d0b0fd741dec17c4981fa3f15b331f3c, type: 3}
   - {fileID: 8300000, guid: 51e45c96d63310d40bb406ea55c9178a, type: 3}
+  takeDamageTime: 0.1
   position: {x: 0, y: 0}
   scaleDirection: 0
   shadowTransparency: 0
@@ -654,7 +656,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.76, z: 0}
-  m_LocalScale: {x: 0.1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6241121657219329615}

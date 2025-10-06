@@ -23,6 +23,7 @@ public class ToadPhase3 : BattlePhase
     {
         base.Start();
         toad = GetComponent<Toad>();
+        toad.animator.SetBool("Jump", true);
         SetState(State.Jump);
     }
 
@@ -56,6 +57,7 @@ public class ToadPhase3 : BattlePhase
                     flyContainer.Add(fly);
                 }
             }
+            toad.animator.SetBool("Jump", false);
             SetState(State.Wait);
             return;
         }
