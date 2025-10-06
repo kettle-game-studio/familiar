@@ -7,6 +7,7 @@ public class Fly : MonoBehaviour
     public float deadTime = 1;
     public Animator animator;
 
+    public bool attackable = true;
     public float walkTime = 1;
     public float walkDistance = 1;
     public AnimationCurve walkCurve;
@@ -33,7 +34,8 @@ public class Fly : MonoBehaviour
     void Start()
     {
         hitCollider.triggerEnter += TouchSomething;
-        viewTrigger.triggerEnter += ViewSomething;
+        if (attackable)
+            viewTrigger.triggerEnter += ViewSomething;
         GetComponent<Hittable>().callback += Hit;
         Wait();
     }

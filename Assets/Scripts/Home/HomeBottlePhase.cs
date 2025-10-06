@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class HomeBottlePhase : BattlePhase
 {
-    public Bottle[] bottles;
+    public Transform[] bottles;
 
     void Update()
     {
-        foreach (Bottle bottle in bottles)
+        foreach (Transform bottle in bottles)
             if (bottle != null)
                 return;
         phaseOver = true;
