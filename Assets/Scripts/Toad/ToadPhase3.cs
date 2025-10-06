@@ -73,6 +73,7 @@ public class ToadPhase2 : BattlePhase
         if (stateTimer > jumpTime)
         {
             toad.cameraController.ShakeDown();
+            toad.position.y = 0;
             Wait();
             return;
         }

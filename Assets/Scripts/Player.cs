@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float parryTimeWindow = 0.5f;
     public Animator animator;
     public float damagePeriod = 1;
+    public float attackPeriod = 1.5f;
     public float jumpTime = 1;
     public float jumpHigh = 1;
     public AnimationCurve jumpCurve;
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
     State state = State.Fall;
     float stateTimer = 0;
     float takeDamageTimer = 0;
+    float attackTimer = 0;
     float parryTimer = 0;
     Action<Transform> parryCallback = v => { };
     Transform parryTarget = null;
@@ -66,6 +68,7 @@ public class Player : MonoBehaviour
     {
         stateTimer += Time.deltaTime;
         takeDamageTimer += Time.deltaTime;
+        attackTimer += Time.deltaTime;
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
         velocity = new Vector2(speed * moveValue.x, 0);
 
@@ -80,18 +83,20 @@ public class Player : MonoBehaviour
         }
 
         if (state != State.Stun)
+        {
             direction =
                 velocity.x > 0 ? 1 :
                 velocity.x < 0 ? -1 :
                 direction;
 
-        transform.localScale = new Vector3(direction < 0 ? -1 : 1, 1, 1);
+            transform.localScale = new Vector3(direction < 0 ? -1 : 1, 1, 1);
 
-        if (canDash && dashAction.IsPressed())
-            Dash();
+            if (canDash && dashAction.IsPressed())
+                Dash();
 
-        if (state != State.Dash && state != State.Attack && attackAction.IsPressed())
-            Attack();
+            if (state != State.Attack && attackAction.IsPressed())
+                Attack();
+        }
 
         if (parryTimer > 0 && parryTarget != null)
         {
@@ -185,6 +190,9 @@ public class Player : MonoBehaviour
 
     void Attack()
     {
+        if (attackTimer < attackPeriod)
+            return;
+        attackTimer = 0;
         animator.SetTrigger("Attack");
         SetState(State.Attack);
         foreach (Collider2D collider in attackTrigger.triggered)

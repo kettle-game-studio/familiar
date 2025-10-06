@@ -70,6 +70,7 @@ public class ToadPhase3 : BattlePhase
     {
         if (stateTimer > fallTime)
         {
+            toad.position.y = 0;
             phaseOver = true;
             return;
         }

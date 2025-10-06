@@ -64,6 +64,7 @@ public class ToadPhase1 : BattlePhase
         if (stateTimer > fallTime)
         {
             toad.cameraController.ShakeDown();
+            toad.position.y = 0;
             SetState(State.Wait);
             return;
         }

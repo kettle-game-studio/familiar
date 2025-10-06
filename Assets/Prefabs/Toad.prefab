@@ -89,7 +89,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 973e6226c3cac0f4bb570f532fed0e67, type: 3}
   - {fileID: 8300000, guid: d0b0fd741dec17c4981fa3f15b331f3c, type: 3}
   - {fileID: 8300000, guid: 51e45c96d63310d40bb406ea55c9178a, type: 3}
-  takeDamageTime: 0.1
+  takeDamageTime: 0.2
   position: {x: 0, y: 0}
   scaleDirection: 0
   shadowTransparency: 0

@@ -99,8 +99,8 @@ MonoBehaviour:
   speed: 20
   parryTimeWindow: 0.15
   animator: {fileID: 6028489478651587566}
-  damageDropDistance: 2
-  damagePeriod: 1
+  damagePeriod: 1.5
+  attackPeriod: 0.5
   jumpTime: 0.3
   jumpHigh: 5
   jumpCurve:
@@ -163,7 +163,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dashTime: 0.2
-  dashDistance: 7
+  dashDistance: 10
   dashCurve:
     serializedVersion: 2
     m_Curve:
@@ -191,6 +191,32 @@ MonoBehaviour:
   attackTime: 0.2
   attackDistance: 1
   attackCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  stunTime: 0.5
+  stunDistance: 2
+  stunCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -310,7 +336,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.049091816, y: -1.6386292}
+  m_Offset: {x: 0.049091816, y: -1.86378}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -320,7 +346,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.7585669, y: 0.74200296}
+  m_Size: {x: 2.7585669, y: 0.29170132}
   m_EdgeRadius: 0
 --- !u!114 &6204510091650426179
 MonoBehaviour:
