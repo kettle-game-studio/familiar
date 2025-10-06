@@ -39,9 +39,7 @@ public class ToadPhase1 : BattlePhase
 
     void WaitUpdate()
     {
-        if (hp <= 0)
-            phaseOver = true;
-        else if (stateTimer > waitTime && toad.distanceTrigger.isTriggered())
+        if (stateTimer > waitTime && toad.distanceTrigger.isTriggered())
             Jump();
     }
 
@@ -77,7 +75,12 @@ public class ToadPhase1 : BattlePhase
     void DamageUpdate()
     {
         if (stateTimer > toad.takeDamageTime)
-            Jump();
+        {
+            if (hp <= 0)
+                phaseOver = true;
+            else
+                Jump();
+        }
     }
 
     void Jump()

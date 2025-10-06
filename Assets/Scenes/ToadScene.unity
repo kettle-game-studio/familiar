@@ -1468,6 +1468,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1196861011541531958, guid: 04529eadf5abefb4681700911a74fc6c, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 16280233}
     - target: {fileID: 1795486385721388586, guid: 04529eadf5abefb4681700911a74fc6c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1571,6 +1575,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1108664205719052519, guid: b169dc6b39964704d94d5f73317bc6d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618213898571792346, guid: b169dc6b39964704d94d5f73317bc6d9, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4338608406550082466, guid: b169dc6b39964704d94d5f73317bc6d9, type: 3}

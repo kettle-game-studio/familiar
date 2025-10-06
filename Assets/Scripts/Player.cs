@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    public CameraController cameraController;
     public float hp = 3;
     public float speed = 1;
     public float parryTimeWindow = 0.5f;
+    public float deadTime = 1;
     public Animator animator;
     public float damagePeriod = 1;
     public float attackPeriod = 1.5f;
@@ -38,7 +40,7 @@ public class Player : MonoBehaviour
     public AudioSource damageAudio;
     public AudioClip[] damageClips;
 
-    enum State { Jump, Fall, Walk, Dash, Attack, Stun }
+    enum State { Jump, Fall, Walk, Dash, Attack, Stun, Dead }
 
     InputAction moveAction;
     InputAction jumpAction;
@@ -82,10 +84,11 @@ public class Player : MonoBehaviour
             case State.Jump: JumpUpdate(); break;
             case State.Dash: DashUpdate(); break;
             case State.Stun: StunUpdate(); break;
+            case State.Dead: DeadUpdate(); break;
             case State.Attack: AttackUpdate(); break;
         }
 
-        if (state != State.Stun)
+        if (state != State.Stun && state != State.Dead)
         {
             direction =
                 velocity.x > 0 ? 1 :
@@ -168,10 +171,24 @@ public class Player : MonoBehaviour
     {
         if (stateTimer > stunTime)
         {
-            SetState(State.Fall);
+            if (hp <= 0)
+            {
+                cameraController.BlackoutOn();
+                animator.SetTrigger("Dead");
+                SetState(State.Dead);
+            }
+            else
+                SetState(State.Fall);
             return;
         }
         velocity.x = -direction * CurveTimeDerivative(stunCurve, stunTime) * stunDistance;
+    }
+
+    void DeadUpdate()
+    {
+        if (stateTimer > deadTime)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        velocity = Vector2.zero;
     }
 
     void AttackUpdate()
@@ -244,8 +261,6 @@ public class Player : MonoBehaviour
         damageAudio.Play();
         Stun();
         Debug.Log($"Player damage ({hp} hp)");
-        if (hp == 0)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     float CurveTimeDerivative(AnimationCurve curve, float resolution)

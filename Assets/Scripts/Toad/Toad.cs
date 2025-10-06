@@ -48,9 +48,6 @@ public class Toad : MonoBehaviour
             toadBody.transform.localPosition.z
         );
         float powTransparency = shadowTransparency * shadowTransparency;
-        // powTransparency = powTransparency * powTransparency;
-        // powTransparency = powTransparency * powTransparency;
-        // powTransparency = powTransparency * powTransparency;
         shadow.color = new Color(shadow.color.r, shadow.color.g, shadow.color.b, 1 - powTransparency);
         toadBody.transform.localScale = new Vector3(scaleDirection, 1, 1);
     }
